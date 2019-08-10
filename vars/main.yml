@@ -1,0 +1,4 @@
+---
+# vars file for nginx_lb
+server_1: 54.197.23.43
+server_2: 54.237.248.38

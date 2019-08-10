@@ -1,0 +1,16 @@
+---
+- name: 'Configuring RoundRobin LB'
+  become: yes
+  hosts: nginxlb
+  tasks:
+    - name: 'Install Nginx'
+      apt:
+        name: nginx
+        state: present
+
+    - name: 'Edit Nginx configuration file'
+      delegate_to: lb01
+      template: src=virtualhost.j2 dest="/etc/nginx/sites-available/default"
+
+    - name: "Restarting/Enabling Nginx"
+      service: name=nginx state=restarted enabled=yes
